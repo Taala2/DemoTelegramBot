@@ -20,7 +20,7 @@ class User(Base):
     tg_id = mapped_column(BigInteger, primary_key=True)
 
     context = relationship("Context", back_populates="user", cascade="all, delete")
-    model = relationship('Model', back_populates='user', cascade='all, delete')
+    model = relationship('ChatModel', back_populates='user', cascade='all, delete')
 
 class Context(Base):
     __tablename__ = 'context'
@@ -33,12 +33,13 @@ class Context(Base):
 
     user = relationship("User", back_populates="context")
 
-class Model(Base):
+class ChatModel(Base):
     __tablename__ = 'models'
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id = mapped_column(BigInteger, ForeignKey('users.tg_id'), unique = True)
     model: Mapped[str] = mapped_column(String, nullable=False)
+    system_msg: Mapped[str] = mapped_column(String, nullable=False)
 
     user = relationship('User', back_populates='model')
 

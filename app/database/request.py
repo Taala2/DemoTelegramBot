@@ -1,6 +1,6 @@
 from app.database.models import async_session
-from app.database.models import User, Context, Model
-from sqlalchemy import select
+from app.database.models import User, Context, ChatModel
+from sqlalchemy import select, update
 from datetime import datetime
 
 from sqlalchemy.dialects.postgresql import insert
@@ -33,16 +33,33 @@ async def get_history(tg_id: int) -> None:
         history = result.all()
         return history
 
-async def upate_state(tg_id: int, state: str) -> None:
+async def update_state(tg_id: int, state: str) -> None:
     async with async_session() as session:
-        stmt = insert(Model).values(user_id=tg_id, model=state)
-        stmt = stmt.on_conflict_do_update(index_elements=['user_id'], set_={'model': state})
-        await session.execute(stmt)
+        await session.execute(update(ChatModel)
+                              .where(ChatModel.user_id == tg_id)
+                              .values(model=state))
         await session.commit()
 
-async def get_state(tg_id: int) -> None:
+async def update_system(tg_id: int, system: str) -> None:
     async with async_session() as session:
-        result = await session.scalar(
-            select(Model.model).where(Model.user_id == tg_id)
+        await session.execute(update(ChatModel)
+                              .where(ChatModel.user_id == tg_id)
+                              .values(system_msg=system))
+        await session.commit()
+
+async def get_state(tg_id: int):
+    async with async_session() as session:
+        result = await session.scalars(
+            select(ChatModel).where(ChatModel.user_id == tg_id)
         )
-        return result
+        row = result.first()
+        return (row.model, row.system_msg) if row else None
+
+async def default_chat_model(tg_id: int) -> None:
+    async with async_session() as session:
+        stmt = insert(ChatModel).values(user_id=tg_id, model='deepseek', system_msg='default')
+        stmt = stmt.on_conflict_do_nothing(
+            index_elements=['user_id']
+        )
+        await session.execute(stmt)
+        await session.commit()

@@ -9,12 +9,18 @@ main = ReplyKeyboardMarkup(keyboard=[
 
 close = ReplyKeyboardMarkup(keyboard=[
         [KeyboardButton(text="Choose AI model")],
+        [KeyboardButton(text="Answer mode")],
         [KeyboardButton(text="Exit")]
     ], resize_keyboard=True)
 
 assistant = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="DeepSeek", callback_data='assistant_deepseek')],
     [InlineKeyboardButton(text="Gemini", callback_data='assistant_gemini')]
+])
+
+prepromt = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="Expert", callback_data='system_expert')],
+    [InlineKeyboardButton(text="Humorist", callback_data='system_humorist')]
 ])
 
 # async def get_main_keyboard():

@@ -13,13 +13,19 @@ client = AsyncOpenAI(
 )
 
 
-async def generate_ai(message: str, model):
+async def generate_ai(message: str, model, system_msg = 'Defeault'):
+    if not isinstance(message, list):
+        message = [{"role": "user", "content": message}]
+    
+
+    full_msg = [{"role": "system", "content": system_msg}] + message
+    
     try:
         completion = await client.chat.completions.create(
         model = model,
-        messages = message
+        messages = full_msg,
         )
-        print(completion)
+        logging.info('Получен ответ от AI '.format(completion.choices[0].message.content))
         return completion.choices[0].message.content
     except Exception as e:
         logging.error(f"Ошибка в AI: {e}")
