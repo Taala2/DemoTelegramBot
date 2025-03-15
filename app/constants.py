@@ -6,4 +6,4 @@ class Messages:
     WAIT_GENERATION = "Please wait, your request is being generated"
     MODEL_CHOSEN = "You choosed! {}"
     ERROR_GENERATION = "Error generating response, please try again later."
-    ERROR_DATABASE = "Error accessing database. Please try again later." 
+    ERROR_DATABASE = "Error accessing database. Please try again later."

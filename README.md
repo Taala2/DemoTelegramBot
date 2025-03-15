@@ -1,121 +1,94 @@
-# 🤖 Telegram AI & Crypto Bot
+# 🤖 Telegram AI & Crypto Bot  
 
-Многофункциональный Telegram бот с искусственным интеллектом и отслеживанием криптовалют.
+A multifunctional Telegram bot with artificial intelligence and cryptocurrency tracking.  
 
-## ✨ Возможности
+## ✨ Features  
 
-### 🧠 AI Ассистент
-- **Множество AI моделей**
-  - DeepSeek - продвинутая языковая модель
-  - Gemini - новейшая модель от Google
-- **Режимы общения**
-  - 👨‍🔬 Эксперт - предоставляет детальные аналитические ответы
-  - 😄 Юморист - отвечает с юмором и креативом
-- **Умные функции**
-  - Сохранение контекста разговора
-  - Ограничение запросов (50 в день)
-  - Защита от перегрузки токенов
+### 🧠 AI Assistant  
+- **Multiple AI Models**  
+  - DeepSeek - an advanced language model  
+  - Gemini - the latest model from Google  
+- **Chat Modes**  
+  - 👨‍🔬 Expert - provides detailed analytical responses  
+  - 😄 Humorist - responds with humor and creativity  
+- **Smart Features**  
+  - Conversation context saving  
+  - Request limit (50 per day)  
+  - Token overload protection  
 
-### 📈 Криптовалютный трекер
-- Актуальные цены с Binance
-- Поддерживаемые пары:
-  - BTC, ETH, BNB, XRP, ADA
-  - SOL, DOT, DOGE, MATIC, LTC
-  - LINK, BUSD, VET, XLM, TRX
-- Кэширование данных для быстрого ответа
+### 📈 Cryptocurrency Tracker  
+- Real-time prices from Binance  
+- Supported trading pairs:  
+  - BTC, ETH, BNB, XRP, ADA  
+  - SOL, DOT, DOGE, MATIC, LTC  
+  - LINK, BUSD, VET, XLM, TRX  
+- Data caching for fast responses  
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start  
 
-### Предварительные требования
-- Python 3.10 или выше
-- PostgreSQL
-- Git
+### Prerequisites  
+- Python 3.10 or higher  
+- PostgreSQL  
+- Git  
 
-### Установка
+### Installation  
 
-1. Клонируйте репозиторий:
+1. Clone the repository:  
 ```bash
-git clone <repository-url>
+git clone https://github.com/Taala2/DemoTelegramBot.git
 cd telegram-ai-crypto-bot
 ```
 
-2. Создайте виртуальное окружение:
+2. Create a virtual environment:  
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate     # Windows
 ```
 
-3. Установите зависимости:
+3. Install dependencies:  
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Настройте переменные окружения:
-Создайте файл `.env` в корневой директории:
+4. Set up environment variables:  
+Create a `.env` file in the root directory:  
 ```env
-# Токены
-TG_TOKEN=ваш_токен_telegram_бота
-AI_TOKEN=ваш_токен_openai
-DEEPSEEK=ваш_токен_deepseek
-GEMINI=ваш_токен_gemini
+# Tokens  
+TG_TOKEN=your_telegram_bot_token  
+AI_TOKEN=your_openai_token  
+DEEPSEEK=your_deepseek_token  
+GEMINI=your_gemini_token  
 
-# База данных
-SQLALCHEMY=postgresql+asyncpg://user:password@localhost/dbname
+# Database  
+SQLALCHEMY=postgresql+asyncpg://user:password@localhost/dbname  
 ```
 
-5. Запустите бота:
+5. Run the bot:  
 ```bash
 python run.py
 ```
 
-## 🛠 Технический стек
+## 🛠 Tech Stack  
 
-### Основные технологии
-- **Python 3.10+** - основной язык разработки
-- **Aiogram 3** - асинхронный фреймворк для Telegram ботов
-- **SQLAlchemy** - ORM для работы с базой данных
-- **PostgreSQL** - основная база данных
-- **AsyncIO** - асинхронное программирование
+### Core Technologies  
+- **Python 3.10+** - main programming language  
+- **Aiogram 3** - asynchronous framework for Telegram bots  
+- **SQLAlchemy** - ORM for database management  
+- **PostgreSQL** - main database  
+- **AsyncIO** - asynchronous programming  
 
-### API интеграции
-- OpenAI API - для работы с AI моделями
-- Binance API - для получения цен криптовалют
+### API Integrations  
+- OpenAI API - for AI model interaction  
+- Binance API - for fetching cryptocurrency prices  
 
-## 📊 Архитектура
+## 📊 Architecture  
 
-### Модули
-- `app/handler.py` - обработчики команд бота
-- `app/utils.py` - вспомогательные функции
-- `app/allapi/` - интеграции с внешними API
-- `app/database/` - работа с базой данных
+### Modules  
+- `app/handler.py` - bot command handlers  
+- `app/utils.py` - utility functions  
+- `app/allapi/` - external API integrations  
+- `app/database/` - database interactions  
 
-### Особенности реализации
-- Асинхронная обработка запросов
-- Кэширование данных
-- Ограничение количества запросов
-- Логирование действий и ошибок
-- Строгая типизация кода
-
-## 🔒 Безопасность
-- Защита от спама через ограничение запросов
-- Безопасное хранение токенов через переменные окружения
-- Валидация входных данных
-- Обработка ошибок API
-
-## 📝 Логирование
-- Подробное логирование действий пользователей
-- Отслеживание ошибок API
-- Мониторинг использования ресурсов
-
-## 🤝 Вклад в проект
-Мы приветствуем ваш вклад в проект! Для этого:
-1. Форкните репозиторий
-2. Создайте ветку для ваших изменений
-3. Внесите изменения и создайте pull request
-
-## 📄 Лицензия
-MIT License - подробности в файле LICENSE
-
-## 👥 Поддержка
-При возникновении проблем создавайте issue в репозитории проекта
+## 👥 Support  
+If you encounter any issues, create an issue in the project repository.  
